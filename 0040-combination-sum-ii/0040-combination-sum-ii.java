@@ -1,27 +1,42 @@
 class Solution {
+
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> ans = new ArrayList<>();
-        List<Integer> ds = new ArrayList<>();
+        List<List<Integer>> list = new LinkedList<List<Integer>>();
         Arrays.sort(candidates);
-        combination(candidates, target, ans, ds, 0);
-        return ans;
+        backtrack(list, new ArrayList<Integer>(), candidates, target, 0);
+        return list;
     }
-    public void combination(int[] candidates, int target, List<List<Integer>> ans, List<Integer> ds, int index) {
-        //base case
-        if(target == 0) {
-            ans.add(new ArrayList<>(ds));
-            return ;
-        }
-        for(int i = index ; i < candidates.length; i++) {
 
-            //not pick
-            if(i > index && candidates[i] == candidates[i-1])   continue;
-            if(candidates[i] > target) break;
-
-            //pick 
-            ds.add(candidates[i]);
-            combination(candidates, target - candidates[i], ans, ds, i + 1);
-            ds.remove(ds.size() - 1);
+    private void backtrack(
+        List<List<Integer>> answer,
+        List<Integer> tempList,
+        int[] candidates,
+        int totalLeft,
+        int index
+    ) {
+        if (totalLeft < 0) return;
+        else if (totalLeft == 0) { // Add to the answer array, if the sum is equal to target.
+            answer.add(new ArrayList<>(tempList));
+        } else {
+            for (
+                int i = index;
+                i < candidates.length && totalLeft >= candidates[i];
+                i++
+            ) {
+                if (i > index && candidates[i] == candidates[i - 1]) continue;
+                // Add it to tempList.
+                tempList.add(candidates[i]);
+                // Check for all possible scenarios.
+                backtrack(
+                    answer,
+                    tempList,
+                    candidates,
+                    totalLeft - candidates[i],
+                    i + 1
+                );
+                // Backtrack the tempList.
+                tempList.remove(tempList.size() - 1);
+            }
         }
     }
 }
