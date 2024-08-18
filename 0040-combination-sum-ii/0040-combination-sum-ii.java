@@ -1,42 +1,23 @@
 class Solution {
-
-    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> list = new LinkedList<List<Integer>>();
-        Arrays.sort(candidates);
-        backtrack(list, new ArrayList<Integer>(), candidates, target, 0);
-        return list;
-    }
-
-    private void backtrack(
-        List<List<Integer>> answer,
-        List<Integer> tempList,
-        int[] candidates,
-        int totalLeft,
-        int index
-    ) {
-        if (totalLeft < 0) return;
-        else if (totalLeft == 0) { // Add to the answer array, if the sum is equal to target.
-            answer.add(new ArrayList<>(tempList));
-        } else {
-            for (
-                int i = index;
-                i < candidates.length && totalLeft >= candidates[i];
-                i++
-            ) {
-                if (i > index && candidates[i] == candidates[i - 1]) continue;
-                // Add it to tempList.
-                tempList.add(candidates[i]);
-                // Check for all possible scenarios.
-                backtrack(
-                    answer,
-                    tempList,
-                    candidates,
-                    totalLeft - candidates[i],
-                    i + 1
-                );
-                // Backtrack the tempList.
-                tempList.remove(tempList.size() - 1);
-            }
+    List<List<Integer>>ans = new ArrayList<>();
+    void solve(int idx,int target,int [] arr, List<Integer>help){
+        if(target == 0){
+            ans.add(new ArrayList<>(help));
+            return;
         }
+        if(idx >= arr.length){
+            return;
+        }
+        for(int i=idx; i<arr.length && arr[i]<=target; i++){
+            if(i != idx && arr[i] == arr[i-1]) continue;
+                help.add(arr[i]);
+                solve(i+1,target-arr[i],arr,help);
+                help.remove(help.size()-1);
+        }
+    }
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        solve(0,target, candidates, new ArrayList<>());
+        return ans;
     }
 }
