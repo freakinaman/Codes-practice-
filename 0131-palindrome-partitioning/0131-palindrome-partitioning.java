@@ -24,6 +24,7 @@ class Solution {
             if (s.charAt(start) != s.charAt(end)) return false;
             start++;
             end--;
+            
         }
         
         return true;
