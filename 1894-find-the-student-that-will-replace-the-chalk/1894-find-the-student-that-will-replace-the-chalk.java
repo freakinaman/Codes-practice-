@@ -15,6 +15,7 @@ class Solution {
             if (k < chalk[i]) {
                 return i;
             }
+            
             k = k - chalk[i];
         }
         return 0;
