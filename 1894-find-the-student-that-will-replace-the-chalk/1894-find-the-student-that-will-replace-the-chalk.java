@@ -9,6 +9,7 @@ class Solution {
                 break;
             }
         }
+        
         // Find modulo of k with sum.
         k = k % (int) sum;
         for (int i = 0; i < chalk.length; i++) {
