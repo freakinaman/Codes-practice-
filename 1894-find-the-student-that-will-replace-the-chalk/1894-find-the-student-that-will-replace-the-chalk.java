@@ -18,6 +18,7 @@ class Solution {
             }
             
             
+            
             k = k - chalk[i];
         }
         return 0;
