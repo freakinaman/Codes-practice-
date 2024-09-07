@@ -15,6 +15,7 @@ class Solution {
             if(nums.size()==0){
                 break;
             }
+            
             k=k%fact;
             fact=fact/nums.size();
         }
