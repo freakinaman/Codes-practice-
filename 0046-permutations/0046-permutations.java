@@ -15,6 +15,7 @@ class Solution {
             return;
         }
         
+        
         for(int i=0;i<nums.length;i++){
             if(!freq[i]){
                 freq[i]=true;
