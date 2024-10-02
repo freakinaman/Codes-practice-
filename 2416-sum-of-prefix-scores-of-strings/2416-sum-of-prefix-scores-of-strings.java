@@ -22,6 +22,8 @@ class Solution {
             node = node.next[c - 'a'];
         }
     }
+    
+    
 
     // Calculate the prefix count using this function.
     int count(String s) {
