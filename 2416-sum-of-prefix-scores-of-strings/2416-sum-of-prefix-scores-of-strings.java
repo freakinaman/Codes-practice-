@@ -20,6 +20,7 @@ class Solution {
             // Increment the count of the current prefix.
             node.next[c - 'a'].cnt++;
             node = node.next[c - 'a'];
+            
         }
         
     }
