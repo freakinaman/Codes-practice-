@@ -21,6 +21,7 @@ class Solution {
             node.next[c - 'a'].cnt++;
             node = node.next[c - 'a'];
             
+            
         }
         
     }
