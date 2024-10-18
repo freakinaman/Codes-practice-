@@ -23,6 +23,7 @@ class Solution {
             node = node.next[c - 'a'];
             
             
+            
         }
         
     }
