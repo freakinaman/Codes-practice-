@@ -5,8 +5,8 @@ class Solution {
         int totalSum = n * (n + 1) / 2; 
         int arraySum = 0;
 
-        for (int num : nums) {
-            arraySum += num; 
+        for (int i =0;i< nums.length; i++) {
+            arraySum += nums[i]; 
         }
 
         return totalSum - arraySum; 
